@@ -1,0 +1,58 @@
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("Enter the number of processes:");
+//        int numProcesses = scanner.nextInt();
+//
+//        System.out.println("Enter the Round Robin Time Quantum:");
+//        int quantum = scanner.nextInt();
+//
+//        System.out.println("Enter the Context Switching Time:");
+//        int contextSwitching = scanner.nextInt();
+//
+//        // PriorityQueue to manage processes based on arrival time
+//        PriorityQueue<Process> arrivalQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getArrivalTime));
+//
+//        for (int i = 0; i < numProcesses; i++) {
+//            System.out.println("Enter details for Process " + (i + 1) + ":");
+//            System.out.print("Process Name: ");
+//            String name = scanner.next();
+//
+//            System.out.print("Process Color: ");
+//            String color = scanner.next();
+//
+//            System.out.print("Arrival Time: ");
+//            int arrivalTime = scanner.nextInt();
+//
+//            System.out.print("Burst Time: ");
+//            int burstTime = scanner.nextInt();
+//
+//            System.out.print("Priority: ");
+//            int priority = scanner.nextInt();
+//
+//            arrivalQueue.add(new Process(name, color, priority, arrivalTime, burstTime));
+//        }
+//
+//        // Initialize Scheduler and Processor
+//        Scheduler scheduler = new Scheduler();
+//        Processor processor = new Processor(scheduler, quantum, contextSwitching);
+//
+//        int currentTime = 0;
+//
+//        while (!arrivalQueue.isEmpty() || scheduler.hasPendingProcesses()) {
+//            // Add new processes to the scheduler if their arrival time has passed
+//            while (!arrivalQueue.isEmpty() && arrivalQueue.peek().getArrivalTime() <= currentTime) {
+//                scheduler.addProcess(arrivalQueue.poll());
+//            }
+//
+//            // Execute the next process
+//            if (scheduler.hasPendingProcesses()) {
+//                currentTime = processor.executeNextProcess(currentTime);
+//            } else {
+//                System.out.println("Time " + currentTime + ": Idle");
+//                currentTime++; // Increment time if no processes are ready
+//            }
+//        }
+//
+//        // Print Final Statistics
+//        processor.printStatistics();
+//    }
